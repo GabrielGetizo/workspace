@@ -1,0 +1,58 @@
+﻿.claude/ structure:
+  .claude\commands
+  .claude\rules
+  .claude\skills
+  .claude\standards
+  .claude\commands\review.md
+  .claude\rules\api.md
+  .claude\rules\react.md
+  .claude\rules\tests.md
+  .claude\skills\deploy-check
+  .claude\skills\deploy-check\SKILL.md
+  .claude\standards\api.md
+  .claude\standards\database.md
+  .claude\standards\frontend.md
+  .claude\standards\testing.md
+
+Rule path-scoping frontmatter:
+  .claude\rules\api.md:2: description: Conventions for Node.js API handlers
+  .claude\rules\api.md:3: paths:
+  .claude\rules\api.md:4: - "src/api/**/*"
+  .claude\rules\react.md:2: description: Conventions for React components and pages
+  .claude\rules\react.md:3: paths:
+  .claude\rules\react.md:4: - "src/components/**/*"
+  .claude\rules\react.md:5: - "src/pages/**/*"
+  .claude\rules\tests.md:2: description: Conventions for test files (co-located *.test.ts and *.test.tsx)
+  .claude\rules\tests.md:3: paths:
+  .claude\rules\tests.md:4: - "**/*.test.tsx"
+  .claude\rules\tests.md:5: - "**/*.test.ts"
+
+Review command:
+  .claude\commands\review.md:4: allowed-tools:
+  .claude\commands\review.md:5: - Read
+  .claude\commands\review.md:6: - Grep
+  .claude\commands\review.md:7: - Glob
+  .claude\commands\review.md:8: - Bash(git diff:*)
+  .claude\commands\review.md:9: - Bash(git log:*)
+  .claude\commands\review.md:10: - Bash(git show:*)
+  .claude\commands\review.md:11: - Bash(git status:*)
+  .claude\commands\review.md:12: - Bash(gh pr diff:*)
+  .claude\commands\review.md:13: - Bash(gh pr view:*)
+  .claude\commands\review.md:14: - Bash(gh pr checks:*)
+
+Deploy-check skill:
+  .claude\skills\deploy-check\SKILL.md:4: context: fork
+  .claude\skills\deploy-check\SKILL.md:6: allowed-tools:
+  .claude\skills\deploy-check\SKILL.md:7: - Read
+  .claude\skills\deploy-check\SKILL.md:8: - Grep
+  .claude\skills\deploy-check\SKILL.md:9: - Glob
+  .claude\skills\deploy-check\SKILL.md:10: - Bash(git status:*)
+  .claude\skills\deploy-check\SKILL.md:11: - Bash(git diff:*)
+  .claude\skills\deploy-check\SKILL.md:12: - Bash(git log:*)
+  .claude\skills\deploy-check\SKILL.md:13: - Bash(git rev-parse:*)
+  .claude\skills\deploy-check\SKILL.md:14: - Bash(git ls-files:*)
+  .claude\skills\deploy-check\SKILL.md:15: - Bash(gh pr view:*)
+  .claude\skills\deploy-check\SKILL.md:16: - Bash(gh pr checks:*)
+  .claude\skills\deploy-check\SKILL.md:64: - name: uncommitted-changes
+  .claude\skills\deploy-check\SKILL.md:67: - name: migrations
+  .claude\skills\deploy-check\SKILL.md:70: - name: ci

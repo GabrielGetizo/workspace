@@ -1,0 +1,10 @@
+# Environment and run notes
+
+- Platform: Windows; Python 3.14.4.
+- The first editable installs for Systems 1, 2, and 4 failed on Windows because their deeply nested `.venv\Lib\site-packages\anthropic\...` paths exceeded the available Windows path limit. The error was reproducible during `pip install -e ".[dev]"` and explicitly mentioned Windows Long Path support.
+- Fixed without changing system or repository configuration: created those virtual environments under `C:\v\` (`C:\v\claims`, `C:\v\retail`, and `C:\v\shift`) and installed the editable projects from their solution directories. System 3 installed successfully in its solution-local `.venv`.
+- System 1 tests: 30 passed. System 2 initial tests: 28 passed, 2 skipped because the run-generated artifacts do not exist yet. System 3 tests: 35 passed. System 4 tests: 33 passed. Complete console outputs are in each system's `task-1-build-and-tests.log`.
+- System 4 ran offline from the recorded Shift C response; its captured output and resulting `data/hot_state.json` and `data/shift_scratchpad.jsonl` are under the System 4 solution.
+- System 1 live run completed with the Vocareum proxy. Run `20261022_125850` processed all 8 fixtures at an estimated cost of `$0.1208`; see `system-1/summary.md`, `system-1/task-2-claims-run.log`, and the captured trace. An earlier attempt was rejected because the proxy did not recognize the key then configured; the successful run used the corrected key.
+- System 2 live context assembly/evaluation remains pending. The API key is configured only in the user's VS Code terminal and is not available to this separate command process; do not copy or persist the key to make it accessible.
+- System 4's initial offline run used the wrong `since` timestamp and returned 0 rows. Reran with the capstone's `--since 2026-04-01T00:00:00Z`: the seeded warm tier contains 40 defects and SQL returned 17. The updated `hot_state.json` is 980 bytes; evidence is in `system-4/task-5-offline-shift.txt` and `system-4/task-5-offline-shift.log`.
